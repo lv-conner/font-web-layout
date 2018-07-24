@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            padding: 0;
+        }
+
+        .nav {
+            display: flex;
+            flex-flow: row;
+            flex-wrap: nowrap;
+            height: 50px;
+            box-sizing: border-box;
+            align-items: center;
+            width: 100%;
+            padding: 0 40px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .nav-black {
+            background-color: black;
+        }
+        .nav-blue{
+            background-color: aqua;
+        }
+
+        .nav-black a {
+            color: whitesmoke;
+        }
+
+        .nav-fixed {
+            position: fixed;
+            z-index: 1004;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .col-1 {
+            width: 8.33333%;
+        }
+
+        .col-2 {
+            width: 16.66667%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-4 {
+            width: 33.3333%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.33333%;
+        }
+        .col-11{
+            width: 91.666667%;
+        }
+        .col-12 {
+            width: 100%;
+        }
+
+        .left-panel {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+
+        .left-panel-black {
+            background-color: black;
+            color: whitesmoke;
+        }
+
+        .row.page {
+            margin: 0;
+            padding: 0;
+            padding-top: 50px;
+            height: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            /* padding-bottom: 50px; */
+        }
+
+        .nav-menu li {
+            list-style: none;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        .left-panel ul {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .nav-menu-item {
+            display: block;
+            padding: 0.75rem 2.5rem;
+            margin-bottom: -1px;
+            border: 1px solid #2f2f2f;
+            text-decoration: none;
+            border-left: none;
+            border-left: none;
+            color: whitesmoke;
+            box-sizing: border-box;
+            font-size: 0.8rem;
+            white-space: pre;
+            word-break: break-all;
+        }
+
+        .tab-content {
+            height: 100%;
+        }
+
+        .tab {
+            height: 40px;
+            width: 120px;
+            border-right: 1px solid #bfbfbf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tab-active{
+            background-color: #2c3e50;
+            color: whitesmoke;
+        }
+
+        .tab-line {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: flex-start;
+            border-bottom: 2px solid black;
+        }
+        .tab-line a{
+            text-decoration: none;
+        }
+        .iframe-container{
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav nav-black nav-fixed">
+            <span>
+                <a href="https://www.bing.com">Bing</a>
+            </span>
+        </div>
+    </nav>
+    <div class="row page">
+        <div class="col-1 left-panel left-panel-black">
+            <ul class="nav-menu">
+                <li>
+                    <a href="#" class="nav-menu-item">系统中心</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-menu-item">用户中心</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-menu-item">文档中心</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-menu-item">报表中心</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-menu-item">管理中心</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-11 tab-content">
+            <div class="tab-line">
+                <a class="tab" href="https://www.bing.com">bing</a>
+                <a class="tab" href="https://www.baidu.com">baidu</a>
+                <a class="tab" href="https://www.bing.com">google</a>
+                <a class="tab tab-active" href="https://www.bing.com">bing</a>
+                <a class="tab" href="https://www.bing.com">bing</a>
+                <a class="tab" href="https://www.bing.com">bing</a>
+                <a class="tab" href="https://www.bing.com">bing</a>
+                <a class="tab" href="https://www.bing.com">bing</a>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://www.bing.com" height="95%" width="100%"  frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes" ></iframe>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
