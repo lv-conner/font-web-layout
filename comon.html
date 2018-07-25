@@ -177,7 +177,7 @@
             align-content: center;
             justify-content: flex-start;
             border-top: 1px solid black;
-            /* border-bottom: 2px solid black; */
+            border-bottom: 2px solid black;
         }
         .tab-line a{
             text-decoration: none;
@@ -220,6 +220,12 @@
             transition-duration: 2s;
             transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
         }
+        .hide-iframe{
+            display: none;
+        }
+        .active-iframe{
+            display: block;
+        }
     </style>
 </head>
 
@@ -237,9 +243,9 @@
                 <li>
                     <a href="javascript:void(0);" class="nav-menu-item">系统中心<i class="fa fa-angle-right right-directive" style="font-size:1rem"></i></a>
                     <ul class="sub-menu">
-                        <li><a class="sub-item tab-frame" href="javascript:void(0);" url="https://www.baidu.com">系统设置</a></li>
-                        <li><a class="sub-item" href="javascript:void(0);">环境设置</a></li>
-                        <li><a class="sub-item" href="javascript:void(0);">API设置</a></li>
+                        <li><a class="sub-item tab-frame" href="javascript:void(0);" url="https://www.baidu.com" id="system">系统设置</a></li>
+                        <li><a class="sub-item" href="javascript:void(0);" url="https://www.bing.com" id="env">环境设置</a></li>
+                        <li><a class="sub-item" href="javascript:void(0);" id="api">API设置</a></li>
                     </ul>
                 </li>
                 <li>
@@ -258,22 +264,20 @@
                 </li>
                 <li>
                     <a href="#" class="nav-menu-item">管理中心<i class="fa fa-angle-right right-directive" style="font-size:1rem"></i></a>
+                    <ul class="sub-menu">
+                        <li><a class="sub-item" href="#">人员管理</a></li>
+                        <li><a class="sub-item" href="#">时钟管理</a></li>
+                        <li><a class="sub-item" href="#">薪酬管理</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
         <div class="col-11 tab-content">
             <div class="tab-line">
-                <a class="tab tab-active" href="https://www.bing.com">bing</a>
-                <a class="tab" href="https://www.baidu.com">baidu</a>
-                <a class="tab" href="https://www.bing.com">google</a>
-                <a class="tab" href="https://www.bing.com">bing</a>
-                <a class="tab" href="https://www.bing.com">bing</a>
-                <a class="tab" href="https://www.bing.com">bing</a>
-                <a class="tab" href="https://www.bing.com">bing</a>
-                <a class="tab" href="https://www.bing.com">bing</a>
+                <a class="tab tab-active" href="#" nav-id="home">主页</a>
             </div>
             <div class="iframe-container">
-                <iframe src="https://www.bing.com" height="95%" width="100%"  frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes" ></iframe>
+                <iframe src="https://www.bing.com" nav-id="home" class="hide-iframe active-iframe" height="95%" width="100%"  frameborder="no" border="0" marginwidth="0" marginheight="0" allowtransparency="yes" ></iframe>
             </div>
         </div>
     </div>
@@ -295,9 +299,87 @@
             });
         });
     }
+    function TabChange(){
+        var el = document.querySelectorAll("a.tab");
+        el.forEach(function(item,index){
+            item.addEventListener("click",function(){
+                document.querySelectorAll("a.tab").forEach(function(i,n){
+                    i.classList.remove("tab-active");
+                });
+                this.classList.add("tab-active");
+                debugger;
+                document.querySelector("iframe[nav-id=" + this.getAttribute("nav-id") +"]").classList.add("active-iframe");
+            })
+        })
+    }
     window.onload=function(){
         MenuActive();
+        TabActive();
+        TabChange();
     };
+    function TabActive(){
+        var iframeContainer = document.querySelector(".iframe-container");
+        let tabContainer = document.querySelector(".tab-line");
+        if(!iframeContainer || !tabContainer){
+            return;
+        }
+        var el = document.querySelectorAll(".nav-menu a[url]");
+        el.forEach(function(item,index){
+            item.addEventListener("click",function(){
+                console.log(this);
+                let iframe = createIframe(this);
+                let tab = crateTab(this);
+                setActiveTab(tabContainer);
+                tabContainer.appendChild(tab);
+                setActiveFrame(iframeContainer);
+                iframeContainer.appendChild(iframe);
+            });
+        });
+        function crateTab(el){
+            let tab = document.createElement("a");
+            tab.classList.add("tab");
+            tab.setAttribute("nav-id",el.getAttribute("id"));
+            tab.setAttribute("href","#");
+            tab.innerText = el.innerText;
+            tab.classList.add("tab-active");
+            tab.addEventListener("click",function(){
+                document.querySelectorAll("a.tab").forEach(function(i,n){
+                    i.classList.remove("tab-active");
+                });
+                this.classList.add("tab-active");
+                setActiveFrame(document.querySelector(".iframe-container"));
+                document.querySelector("iframe[nav-id=" + this.getAttribute("nav-id") +"]").classList.add("active-iframe");
+            });
+            //tab.setAttribute("for",el.getAttribute("id"));
+            return tab;
+        }
+        function setActiveTab(container){
+            container.querySelectorAll("a").forEach(function(item,index){
+                item.classList.remove("tab-active");
+            });
+        }
+        function createIframe(el){
+            let url = el.getAttribute("url");
+            let iframe = document.createElement("iframe");
+            iframe.setAttribute("height","95%");
+            iframe.setAttribute("src",url);
+            iframe.setAttribute("nav-id",el.getAttribute("id"))
+            iframe.setAttribute("width","100%");
+            iframe.setAttribute("frameborder","no");
+            iframe.setAttribute("marginwidth","0");
+            iframe.setAttribute("marginheight","0");
+            iframe.setAttribute("allowtransparency","yes");
+            iframe.setAttribute("class","hide-iframe");
+            iframe.classList.add("active-iframe");
+            return iframe;
+        }
+        function setActiveFrame(container){
+            container.querySelectorAll("iframe").forEach(function(item,index){
+                item.classList.remove("active-iframe");
+            });
+        }
+    }
+
 </script>
 </body>
 
