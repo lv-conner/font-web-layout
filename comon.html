@@ -175,7 +175,7 @@
             text-decoration: none;
         }
         .tab-line a:first-child{
-            border-left: 1px solid #bfbfbf;
+            /* border-left: 1px solid #bfbfbf; */
         }
         .iframe-container{
             height: 100%;
@@ -228,7 +228,7 @@
                 </li>
                 <li>
                     <a href="#" class="nav-menu-item">用户中心<i class="fa fa-angle-right right-directive" style="font-size:1rem"></i></a>
-                    <ul class="sub-menu sub-menu-active">
+                    <ul class="sub-menu">
                         <li><a class="sub-item" href="#">用户设置</a></li>
                         <li><a class="sub-item" href="#">用户管理</a></li>
                         <li><a class="sub-item" href="#">角色管理</a></li>
@@ -263,10 +263,11 @@
     </div>
 <script>
     function MenuActive(){
-        var el = document.querySelectorAll(".right-directive");
+        var el = document.querySelectorAll(".nav-menu-item");
         el.forEach(function(item,index){
             item.addEventListener("click",function(){
-                var ul = this.parentElement.parentElement.querySelector("ul");
+                debugger;
+                var ul = this.parentElement.querySelector("ul");
                 if(!ul){
                     return;
                 }
