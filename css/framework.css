@@ -1,0 +1,85 @@
+
+.nav{
+    display: block;
+    height: 42px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.nav-default{
+    background-color: hsla(0,0%,100%,.4);
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+.nav-content{
+    width: 1160px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.nav-content a{
+    text-decoration: none;
+    color:black;
+}
+.nav-horizontal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    flex-wrap: wrap;
+    flex-grow: inherit;
+}
+.nav-header{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+}
+.nav-header-right{
+    flex-direction: row-reverse;
+}
+.nav-header a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1rem;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 0.75rem;
+}
+.nav-header a:hover{
+    background-color: hsla(0,0%,100%,.6);;
+}
+.row{
+    width: 100%;
+}
+.col-12{
+    width: 100%;
+}
+.col-11{
+    width: 91.66667%;
+}
+.col-10{
+    width: 83.33333%;
+}
+.col-9{
+    width: 75%;
+}
+.col-8{
+    width: 66.6667%;
+}
+.col-6{
+    width: 50%;
+}
+.col-4{
+    width: 33.3333%;
+}
+.col-3{
+    width: 25%;
+}
+.col-2{
+    width: 16.6667%;
+}
+.col-1{
+    width: 8.33333%;
+}
